@@ -6,17 +6,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
 
-    val baseUrl = "https://api.imgflip.com"
+    private val baseUrl = "https://api.dictionaryapi.dev"
 
-    fun initRetrofit(): Retrofit {
+    private fun initRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("baseUrl")
+            .baseUrl(baseUrl)
             .client(OkHttpClient().newBuilder().build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val api: DictionaryRepositoryImpl by lazy {
-        initRetrofit().create(DictionaryRepositoryImpl::class.java)
+    val api: DictionaryRepositoryApi by lazy {
+        initRetrofit().create(DictionaryRepositoryApi::class.java)
     }
 }
