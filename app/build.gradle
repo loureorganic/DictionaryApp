@@ -66,7 +66,7 @@ dependencies {
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    
+
     // Koin Core featuresApiModule.kt
     implementation "io.insert-koin:koin-core:3.1.6"
     // Koin Test features
@@ -74,5 +74,9 @@ dependencies {
     testImplementation "io.insert-koin:koin-test-junit4:3.1.6"
     // Koin main features for Android
     implementation "io.insert-koin:koin-android:3.1.6"
+
+    //gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
 }
