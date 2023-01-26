@@ -1,4 +1,4 @@
-package com.example.dictionaryapp.repository.retrofit
+package com.example.dictionaryapp.repository.api
 
 import com.example.dictionaryapp.model.WordModel
 import retrofit2.http.GET

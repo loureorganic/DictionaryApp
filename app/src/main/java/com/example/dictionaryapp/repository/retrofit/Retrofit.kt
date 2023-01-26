@@ -1,5 +1,6 @@
 package com.example.dictionaryapp.repository.retrofit
 
+import com.example.dictionaryapp.repository.api.DictionaryRepositoryApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.dictionaryapp.databinding.ActivityMainBinding
+import com.example.dictionaryapp.model.Word
 import com.example.dictionaryapp.screens.home.viewmodel.ViewModelHome
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModelHome.getWord("banana")
 
+        viewModelHome.addList(Word("banana", 0))
         val jsonData = applicationContext.resources.openRawResource(
             applicationContext.resources.getIdentifier(
                 "output",
