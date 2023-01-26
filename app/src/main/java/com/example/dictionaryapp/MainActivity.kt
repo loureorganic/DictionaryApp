@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +43,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModelHome.getWord("banana")
+
+        val jsonData = applicationContext.resources.openRawResource(
+            applicationContext.resources.getIdentifier(
+                "output",
+                "raw",
+                applicationContext.packageName
+            )
+        ).bufferedReader().use { it.readText() }
+        val result = convertStringToArray(jsonData)
     }
+
+    private fun convertStringToArray(s: String): Array<String> {
+        var varString = s
+        varString = varString.replace("\\[".toRegex(), "")
+        varString = varString.replace("]".toRegex(), "")
+
+        return varString.replace("\"", "").split(",").toTypedArray()
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -14,4 +14,6 @@ interface RepositoryDictionary {
 class DictionaryRepository @Inject constructor(private val retrofit: RetrofitInstance) :
     RepositoryDictionary {
     override suspend fun getWord(word: String) = retrofit.api.getWord(word)
+
+
 }
