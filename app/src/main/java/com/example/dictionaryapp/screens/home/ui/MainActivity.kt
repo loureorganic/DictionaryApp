@@ -1,4 +1,4 @@
-package com.example.dictionaryapp
+package com.example.dictionaryapp.screens.home.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,8 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.dictionaryapp.R
 import com.example.dictionaryapp.databinding.ActivityMainBinding
-import com.example.dictionaryapp.model.Word
 import com.example.dictionaryapp.screens.home.viewmodel.ViewModelHome
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,9 +44,13 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        viewModelHome.getWord("banana")
 
-        viewModelHome.addList(Word("banana", 0))
+
+
+    }
+
+
+    private fun convertJsonAndSendData() {
         val jsonData = applicationContext.resources.openRawResource(
             applicationContext.resources.getIdentifier(
                 "output",

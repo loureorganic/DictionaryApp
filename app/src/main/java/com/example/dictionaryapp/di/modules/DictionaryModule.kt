@@ -1,8 +1,11 @@
 package com.example.dictionaryapp.di.modules
 
+import android.content.Context
 import com.example.dictionaryapp.repository.DictionaryRepository
 import com.example.dictionaryapp.repository.RepositoryDictionary
 import com.example.dictionaryapp.repository.retrofit.RetrofitInstance
+import com.example.dictionaryapp.screens.home.ImageLoader
+import com.example.dictionaryapp.screens.home.RecyclerViewAdapter
 import com.example.dictionaryapp.screens.home.viewmodel.HomeViewModel
 import com.example.dictionaryapp.screens.home.viewmodel.ViewModelHome
 import com.google.firebase.database.FirebaseDatabase
@@ -18,7 +21,10 @@ object DictionaryModule {
 
     @Singleton
     @Provides
-    fun provideDictionaryRepository(retrofit: RetrofitInstance, firebaseDatabase: FirebaseDatabase): RepositoryDictionary {
+    fun provideDictionaryRepository(
+        retrofit: RetrofitInstance,
+        firebaseDatabase: FirebaseDatabase
+    ): RepositoryDictionary {
         return DictionaryRepository(retrofit, firebaseDatabase)
     }
 
@@ -33,6 +39,7 @@ object DictionaryModule {
     fun provideFirebaseDatabaseInstance(): FirebaseDatabase {
         return FirebaseDatabase.getInstance()
     }
+
 
 }
 

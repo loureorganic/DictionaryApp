@@ -82,4 +82,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.3.0')
     implementation 'com.google.firebase:firebase-database-ktx'
 
+    //rx java
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    //rx android
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+
 }
