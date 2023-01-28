@@ -1,9 +1,11 @@
 package com.example.dictionaryapp.screens.home.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -42,14 +44,14 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = context?.let { RecyclerViewAdapter(it, ImageLoader()) }
+        adapter = RecyclerViewAdapter()
 
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
         setupList()
-
+        onClickItem()
     }
 
     fun setupList() {
@@ -68,6 +70,13 @@ class FirstFragment : Fragment() {
         }
     }
 
+    private fun onClickItem() {
+        adapter?.onItemClick ={
+            val bundle = bundleOf("wordItemInformation" to it)
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
+        }
+    }
+
 
     private fun setRecyclerView() {
         binding.homeRecyclerView.setHasFixedSize(true)
@@ -75,9 +84,5 @@ class FirstFragment : Fragment() {
         binding.homeRecyclerView.adapter = adapter
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
 }

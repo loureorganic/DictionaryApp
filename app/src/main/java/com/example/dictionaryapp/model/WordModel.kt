@@ -1,3 +1,5 @@
 package com.example.dictionaryapp.model
 
-class WordModel : ArrayList<WordModelItem>()
+import java.io.Serializable
+
+class WordModel : ArrayList<WordModelItem>(), Serializable

@@ -1,3 +1,5 @@
 package com.example.dictionaryapp.model
 
-data class Word(val word: String, val id: Int)
+import java.io.Serializable
+
+data class Word(val word: String, val id: Int) : Serializable
