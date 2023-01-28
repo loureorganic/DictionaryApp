@@ -15,6 +15,14 @@ class SecondFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var wordInfo: WordModelItem
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val wordInformation = arguments?.getSerializable("wordItemInformation")
+        wordInfo = wordInformation as WordModelItem
+
+    }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -26,10 +34,8 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val wordInformation = arguments?.getSerializable("wordItemInformation")
-        wordInfo = wordInformation as WordModelItem
-        wordInfo
-        binding.textviewSecond.text = wordInfo.word
+
+
 
     }
 

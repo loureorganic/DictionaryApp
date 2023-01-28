@@ -46,23 +46,12 @@ class FirstFragment : Fragment() {
 
         adapter = RecyclerViewAdapter()
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
-
         setupList()
         onClickItem()
     }
 
-    fun setupList() {
+    private fun setupList() {
         viewModelHome.getList()
-        var wordList: ArrayList<String> = arrayListOf<String>()
-        viewModelHome.listResult.observe(viewLifecycleOwner) {
-            it.forEach { r ->
-                wordList.add(r)
-            }
-            viewModelHome.getWord(wordList)
-        }
         viewModelHome.wordResponse.observe(viewLifecycleOwner) {
             adapter?.setDataList(it)
             adapter?.notifyDataSetChanged()

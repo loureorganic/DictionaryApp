@@ -31,7 +31,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
         val data = dataList[position]
 
         holder.title.text = data.word
-        holder.description.text = data.meanings[0].definitions[0].definition
+        holder.description.text = data.meanings?.get(0)?.definitions?.get(0)?.definition
 
 
         holder.itemView.setOnClickListener {

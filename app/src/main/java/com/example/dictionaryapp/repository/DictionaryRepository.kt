@@ -26,6 +26,7 @@ class DictionaryRepository @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase
 ) : RepositoryDictionary {
     override suspend fun getWord(word: String) = retrofit.api.getWord(word)
+
     override suspend fun addList(word: Word) {
         firebaseDatabase.getReference("Words").child(word.id.toString()).setValue(word.word).await()
     }

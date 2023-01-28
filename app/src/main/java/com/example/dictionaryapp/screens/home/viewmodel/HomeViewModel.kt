@@ -39,7 +39,6 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
 
     override fun getWord(wordList: ArrayList<String>) {
         var wordList1: ArrayList<WordModelItem> = arrayListOf<WordModelItem>()
-
         viewModelScope.launch{
             wordList.map {
                 runCatching { repository.getWord(it) }
@@ -64,12 +63,11 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
     }
 
     override fun getList() {
-
         viewModelScope.launch(Dispatchers.IO) {
             _listResultState.postValue(State.Loading())
             repository.getWordList().subscribe({ result ->
                 _listResultState.postValue(State.Success(Unit))
-                _listResult.postValue(result)
+                getWord(result)
             }, { error ->
                 _listResultState.postValue(State.Error(error))
             })
