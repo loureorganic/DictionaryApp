@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -25,9 +26,6 @@ class FirstFragment : Fragment() {
 
     var adapter: RecyclerViewAdapter? = null
 
-
-
-
     @Inject
     lateinit var viewModelHome: ViewModelHome
 
@@ -46,6 +44,7 @@ class FirstFragment : Fragment() {
 
         adapter = RecyclerViewAdapter()
 
+        (activity as AppCompatActivity).supportActionBar?.hide();
         setupList()
         onClickItem()
     }
