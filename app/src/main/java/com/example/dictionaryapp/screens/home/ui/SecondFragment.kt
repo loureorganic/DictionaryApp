@@ -42,7 +42,9 @@ class SecondFragment : Fragment() {
 
         binding.txtTitleItemMain.text = wordInfo.word
         //binding.txtDescriptionItemMain.text = wordInfo.
-        playAudio(wordInfo.phonetics?.get(0)?.audio?: "null")
+        if (!wordInfo.phonetics.isNullOrEmpty()) {
+            playAudio(wordInfo.phonetics?.get(0)?.audio ?: "null")
+        }
     }
 
     private fun playAudio(urlAudio: String) {

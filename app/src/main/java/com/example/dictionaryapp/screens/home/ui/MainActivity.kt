@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import com.example.dictionaryapp.R
 import com.example.dictionaryapp.databinding.ActivityMainBinding
+import com.example.dictionaryapp.model.Word
 import com.example.dictionaryapp.screens.home.viewmodel.ViewModelHome
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,8 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        //convertJsonAndSendData()
     }
 
 
@@ -49,6 +52,11 @@ class MainActivity : AppCompatActivity() {
             )
         ).bufferedReader().use { it.readText() }
         val result = convertStringToArray(jsonData)
+
+        result.mapIndexed { index, s ->
+            viewModelHome.addList(Word(s, index))
+        }
+
     }
 
     private fun convertStringToArray(s: String): Array<String> {
