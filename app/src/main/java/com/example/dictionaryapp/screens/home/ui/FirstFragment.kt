@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dictionaryapp.R
 import com.example.dictionaryapp.databinding.FragmentFirstBinding
 import com.example.dictionaryapp.screens.home.ImageLoader
@@ -68,7 +69,7 @@ class FirstFragment : Fragment() {
 
     private fun setRecyclerView() {
         binding.homeRecyclerView.setHasFixedSize(true)
-        binding.homeRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.homeRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.homeRecyclerView.adapter = adapter
     }
 

@@ -25,40 +25,45 @@
             android:gravity="center_vertical"
             android:minHeight="50dp"
             android:text="titleCard"
-            android:textColor="#63C832"
-            android:textSize="16sp"
+            android:textColor="#fff"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:background="#c4c4c4"
+            app:layout_constraintTop_toBottomOf="@+id/cardItemTitle" />
 
         <TextView
             android:id="@+id/cardItemDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="8dp"
-            android:lines="4"
+            android:maxLines="3"
             android:text="descriptionCard"
-            android:textColor="#136E37"
+            android:layout_marginTop="10dp"
+            android:textColor="#B9BBBE"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/cardItemTitle" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSeeMore"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="32dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="18dp"
             android:layout_marginBottom="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:letterSpacing="0"
-            android:text="VER MAIS"
+            android:text="See more"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textStyle="bold"
             android:theme="@style/Theme.MaterialComponents"
             app:backgroundTint="@drawable/button_background"
             app:cornerRadius="5dp"

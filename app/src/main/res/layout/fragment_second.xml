@@ -33,50 +33,92 @@
                 android:id="@+id/txtTitleItemMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
                 android:text="textTitle textTitletextTitletextTitletextTitle"
                 android:textAllCaps="true"
                 android:textColor="#136e37"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
-
-
-            <TextView
-                android:id="@+id/txtValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="textValue"
-                android:textColor="#2DA77A"
-                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtTitleItemMain" />
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
-                android:id="@+id/txtDescriptionItemMain"
+                android:id="@+id/txtPhonetic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="textDescription"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                android:text="Phonetics"
+                android:textColor="#2DA77A"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_goneMarginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtValue" />
+                app:layout_constraintTop_toBottomOf="@id/txtTitleItemMain"
+                tools:visibility="visible" />
 
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="textValue"
+                android:textColor="#010101"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPhonetic"
+                app:layout_goneMarginTop="16dp"
+                tools:visibility="visible"/>
+
+
+            <TextView
+                android:id="@+id/txtDefinitions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Definitions"
+                android:textColor="#2DA77A"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_goneMarginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtDescription"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/txtDescriptionDefinition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="textValue"
+                android:textColor="#010101"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDefinitions"
+                app:layout_goneMarginTop="16dp"
+                tools:visibility="visible"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRvAudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txtDescriptionDefinition" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/playAudioButton"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                android:theme="@style/Theme.MaterialComponents"
+                android:backgroundTint="#2DA77A"
                 android:text="Play music"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="189dp" />
+                android:theme="@style/Theme.MaterialComponents"
+                app:layout_constraintStart_toStartOf="@+id/idRvAudio"
+                app:layout_constraintTop_toBottomOf="@+id/idRvAudio" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
