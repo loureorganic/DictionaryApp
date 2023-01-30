@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 interface ViewModelHome {
-    fun getWord(wordList: ArrayList<String>)
+    fun getWord(wordList: ArrayList<Word>)
     fun addList(word: Word)
     fun getList()
     val listResult: LiveData<ArrayList<String>>
@@ -37,13 +37,13 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
     val listResultState: LiveData<State<Unit>> = _listResultState
 
 
-    override fun getWord(wordList: ArrayList<String>) {
+    override fun getWord(wordList: ArrayList<Word>) {
         var wordList1: ArrayList<WordModelItem> = arrayListOf<WordModelItem>()
         viewModelScope.launch(Dispatchers.IO) {
             wordList.map {
-                runCatching { repository.getWord(it) }
+                runCatching { it.word?.let { it1 -> repository.getWord(it1) } }
                     .onSuccess { w ->
-                        wordList1.add(w[0])
+                        wordList1.add((w?.get(0) ?: "") as WordModelItem)
                     }
                     .onFailure {
                         val error = it

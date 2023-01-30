@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         val result = convertStringToArray(jsonData)
 
         result.mapIndexed { index, s ->
-            viewModelHome.addList(Word(s, index))
+            viewModelHome.addList(Word(s, index.toLong()))
         }
 
     }
