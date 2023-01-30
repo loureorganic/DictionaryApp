@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dictionaryapp.model.Word
-import com.example.dictionaryapp.model.WordModel
 import com.example.dictionaryapp.model.WordModelItem
 import com.example.dictionaryapp.repository.DictionaryRepository
 import com.example.dictionaryapp.utils.State
@@ -15,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 interface ViewModelHome {
-    fun getWord(wordList: ArrayList<String>)
+    fun getWord(wordList: ArrayList<Word>)
     fun addList(word: Word)
     fun getList()
     val listResult: LiveData<ArrayList<String>>
@@ -37,13 +36,14 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
     val listResultState: LiveData<State<Unit>> = _listResultState
 
 
-    override fun getWord(wordList: ArrayList<String>) {
+    override fun getWord(wordList: ArrayList<Word>) {
         var wordList1: ArrayList<WordModelItem> = arrayListOf<WordModelItem>()
         viewModelScope.launch(Dispatchers.IO) {
             wordList.map {
-                runCatching { repository.getWord(it) }
+                runCatching { it.word?.let { it1 -> repository.getWord(it1) } }
                     .onSuccess { w ->
-                        wordList1.add(w[0])
+                        w
+                            wordList1.add(w!![0])
                     }
                     .onFailure {
                         val error = it
@@ -51,6 +51,7 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
             }
             _wordResponse.postValue(wordList1)
         }
+
     }
 
 

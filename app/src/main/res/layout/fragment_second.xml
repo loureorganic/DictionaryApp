@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2">
+    android:background="#36393F">
 
 
     <ImageView
@@ -33,14 +33,23 @@
                 android:id="@+id/txtTitleItemMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/background_rounded"
                 android:text="textTitle textTitletextTitletextTitletextTitle"
                 android:textAllCaps="true"
-                android:textColor="#136e37"
+                android:padding="8dp"
+                android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <View
+                android:id="@+id/divider"
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_margin="5dp"
+                android:background="#c4c4c4"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitleItemMain" />
 
             <TextView
                 android:id="@+id/txtPhonetic"
@@ -48,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Phonetics"
-                android:textColor="#2DA77A"
+                android:textColor="#5865F2"
                 android:textSize="18sp"
                 android:visibility="gone"
                 android:textAllCaps="true"
@@ -56,7 +65,7 @@
                 app:layout_goneMarginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtTitleItemMain"
+                app:layout_constraintTop_toBottomOf="@id/divider"
                 tools:visibility="visible" />
 
             <TextView
@@ -64,8 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:text="textValue"
-                android:textColor="#010101"
+                android:text="@string/random_description"
+                android:textColor="#fff"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPhonetic"
@@ -78,8 +87,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Definitions"
-                android:textColor="#2DA77A"
+                android:text="@string/definitions"
+                android:textColor="#5865F2"
                 android:textSize="18sp"
                 android:visibility="gone"
                 android:textAllCaps="true"
@@ -95,8 +104,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:text="textValue"
-                android:textColor="#010101"
+                android:text="@string/random_description"
+                android:textColor="#fff"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDefinitions"
@@ -114,9 +123,11 @@
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#2DA77A"
+                android:backgroundTint="#5865F2"
                 android:text="Play music"
+                android:textColor="#fff"
                 android:theme="@style/Theme.MaterialComponents"
+                app:layout_constraintEnd_toEndOf="@+id/idRvAudio"
                 app:layout_constraintStart_toStartOf="@+id/idRvAudio"
                 app:layout_constraintTop_toBottomOf="@+id/idRvAudio" />
 

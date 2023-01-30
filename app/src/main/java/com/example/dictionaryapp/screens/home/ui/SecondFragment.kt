@@ -80,8 +80,8 @@ class SecondFragment : Fragment() {
 
         wordInfo.phonetics?.map {
             it.audio
-            id1++;
             listAudios.add(Item(id1, it.audio.toString(), "Audio $id", false))
+            id1++
         }
         listAudios
         setupAdapter(listAudios)

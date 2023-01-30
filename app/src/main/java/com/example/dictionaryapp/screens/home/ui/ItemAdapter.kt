@@ -33,8 +33,7 @@ class ItemAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        itemStoreAdapterBinding =
-            ItemAdapterBinding.inflate(LayoutInflater.from(context), parent, false)
+        itemStoreAdapterBinding = ItemAdapterBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(itemStoreAdapterBinding.root)
     }
 
@@ -58,11 +57,13 @@ class ItemAdapter(
         holder: ViewHolder,
         position: Int
     ) {
+        //holder.rbButton?.isChecked = position == selectedPosition
+
+
         holder.rbButton?.setOnCheckedChangeListener(object :
             CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 if (isChecked) {
-                    holder.rbButton?.isChecked = position == selectedPosition
                     selectedPosition = holder.adapterPosition
                     mItemClickListener?.onClick(items[selectedPosition])
                     addressSelectedId.postValue(selectedPosition)

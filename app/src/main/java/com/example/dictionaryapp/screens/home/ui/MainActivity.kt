@@ -34,12 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
-        //convertJsonAndSendData()
+       // convertJsonAndSendData()
     }
 
 
@@ -54,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         val result = convertStringToArray(jsonData)
 
         result.mapIndexed { index, s ->
-            viewModelHome.addList(Word(s, index))
+            viewModelHome.addList(Word(s, index.toLong()))
         }
 
     }
