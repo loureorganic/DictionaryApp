@@ -19,6 +19,7 @@ interface ViewModelHome {
     fun getList()
     val listResult: LiveData<ArrayList<String>>
     val wordResponse: LiveData<ArrayList<WordModelItem>>
+    val wordResponseState: LiveData<State<Unit>>
 }
 
 @HiltViewModel
@@ -35,18 +36,23 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
     private val _listResultState = MutableLiveData<State<Unit>>()
     val listResultState: LiveData<State<Unit>> = _listResultState
 
+    private val _wordResponseState = MutableLiveData<State<Unit>>()
+    override val wordResponseState: LiveData<State<Unit>> = _wordResponseState
+
 
     override fun getWord(wordList: ArrayList<Word>) {
         var wordList1: ArrayList<WordModelItem> = arrayListOf<WordModelItem>()
         viewModelScope.launch(Dispatchers.IO) {
+            _wordResponseState.postValue(State.Loading())
             wordList.map {
                 runCatching { it.word?.let { it1 -> repository.getWord(it1) } }
                     .onSuccess { w ->
                         w
-                            wordList1.add(w!![0])
+                        wordList1.add(w!![0])
+                        _wordResponseState.postValue(State.Success(Unit))
                     }
-                    .onFailure {
-                        val error = it
+                    .onFailure { error ->
+                        _wordResponseState.postValue(State.Error(error))
                     }
             }
             _wordResponse.postValue(wordList1)
