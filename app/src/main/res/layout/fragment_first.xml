@@ -8,6 +8,7 @@
     tools:context=".screens.home.ui.FirstFragment">
 
     <TextView
+        android:id="@+id/titleDictionaryApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DictionaryApp"
@@ -30,6 +31,7 @@
         android:text="Sorry pal, something went wrong, and its not your fault. :( Try again later."
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:visibility="gone"
         android:textStyle="bold"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,6 +46,6 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/errorTextInformation"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
