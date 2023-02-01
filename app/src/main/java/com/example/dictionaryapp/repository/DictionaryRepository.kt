@@ -31,9 +31,10 @@ class DictionaryRepository @Inject constructor(
     }
 
     override suspend fun getWordList() = Observable.create<ArrayList<Word>> { emitter ->
-        //firebaseDatabase.getReference("Words").ref.orderByChild("word").startAt(wordInitial).endAt(wordFinal)
+        //firebaseDatabase.getReference("Words").ref.orderByChild("word")
         val arraylistWord = arrayListOf<Word>()
-        firebaseDatabase.getReference("Words").limitToFirst(20)
+        firebaseDatabase.getReference("Words").orderByChild("word").startAt("abdomen")
+            .endAt("abele")
             .addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {

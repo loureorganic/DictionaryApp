@@ -1,6 +1,7 @@
 package com.example.dictionaryapp.screens.home.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelHome: ViewModelHome
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,24 +35,23 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
 
-       // convertJsonAndSendData()
+   convertJsonAndSendData()
     }
 
 
     private fun convertJsonAndSendData() {
-        val jsonData = applicationContext.resources.openRawResource(
-            applicationContext.resources.getIdentifier(
-                "output",
-                "raw",
-                applicationContext.packageName
-            )
-        ).bufferedReader().use { it.readText() }
+        val jsonData = applicationContext.resources.openRawResource(applicationContext.resources.getIdentifier("output", "raw", applicationContext.packageName)).bufferedReader().use { it.readText() }
         val result = convertStringToArray(jsonData)
 
-        result.mapIndexed { index, s ->
+        result.forEachIndexed { index, s ->
+            Log.d("TESTE", s)
             viewModelHome.addList(Word(s, index.toLong()))
         }
 
+        viewModelHome.addList(Word("banana", 0))
+        /*result.mapIndexed { index, s ->
+            viewModelHome.addList(Word(s, index.toLong()))
+        }*/
     }
 
     private fun convertStringToArray(s: String): Array<String> {

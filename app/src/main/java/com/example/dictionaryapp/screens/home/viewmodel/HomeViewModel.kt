@@ -47,12 +47,11 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
             wordList.map {
                 runCatching { it.word?.let { it1 -> repository.getWord(it1) } }
                     .onSuccess { w ->
-                        w
                         wordList1.add(w!![0])
-                        _wordResponseState.postValue(State.Success(Unit))
+                        //_wordResponseState.postValue(State.Success(Unit))
                     }
                     .onFailure { error ->
-                        _wordResponseState.postValue(State.Error(error))
+                        //_wordResponseState.postValue(State.Error(error))
                     }
             }
             _wordResponse.postValue(wordList1)
