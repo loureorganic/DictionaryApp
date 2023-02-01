@@ -16,7 +16,7 @@ import javax.inject.Singleton
 interface RepositoryDictionary {
     suspend fun getWord(word: String): WordModel
     suspend fun addList(word: Word)
-    suspend fun getWordList(): Observable<ArrayList<Word>>
+    suspend fun getWordList(startAt: String): Observable<ArrayList<Word>>
 }
 
 @Singleton
@@ -30,11 +30,9 @@ class DictionaryRepository @Inject constructor(
         firebaseDatabase.getReference("Words").child(word.id.toString()).setValue(word).await()
     }
 
-    override suspend fun getWordList() = Observable.create<ArrayList<Word>> { emitter ->
-        //firebaseDatabase.getReference("Words").ref.orderByChild("word")
+    override suspend fun getWordList(startAt: String) = Observable.create<ArrayList<Word>> { emitter ->
         val arraylistWord = arrayListOf<Word>()
-        firebaseDatabase.getReference("Words").orderByChild("word").startAt("abdomen")
-            .endAt("abele")
+        firebaseDatabase.getReference("Words").orderByKey().limitToFirst(25).startAt(startAt)
             .addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {

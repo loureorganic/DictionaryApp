@@ -16,7 +16,7 @@ import javax.inject.Inject
 interface ViewModelHome {
     fun getWord(wordList: ArrayList<Word>)
     fun addList(word: Word)
-    fun getList()
+    fun getList(startAt: String)
     val listResult: LiveData<ArrayList<String>>
     val wordResponse: LiveData<ArrayList<WordModelItem>>
     val wordResponseState: LiveData<State<Unit>>
@@ -68,10 +68,10 @@ class HomeViewModel @Inject constructor(private val repository: DictionaryReposi
         }
     }
 
-    override fun getList() {
+    override fun getList(startAt: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _listResultState.postValue(State.Loading())
-            repository.getWordList().subscribe({ result ->
+            repository.getWordList(startAt).subscribe({ result ->
                 _listResultState.postValue(State.Success(Unit))
                 getWord(result)
             }, { error ->

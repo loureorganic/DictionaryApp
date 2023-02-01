@@ -16,9 +16,15 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
     var onItemClick: ((WordModelItem) -> Unit)? = null
 
-    fun setDataList(userImageList: ArrayList<WordModelItem>) {
-        this.dataList = userImageList
+
+
+    fun addData(newDataList: ArrayList<WordModelItem>) {
+        val startPosition = dataList.size
+        dataList.addAll(newDataList)
+        notifyItemRangeInserted(startPosition, newDataList.size)
+
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
@@ -28,6 +34,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     override fun getItemCount() = dataList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        dataList
         val data = dataList[position]
 
         holder.title.text = data.word

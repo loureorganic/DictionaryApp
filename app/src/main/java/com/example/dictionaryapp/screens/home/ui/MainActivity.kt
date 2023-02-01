@@ -34,8 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-
-   convertJsonAndSendData()
     }
 
 
@@ -43,12 +41,7 @@ class MainActivity : AppCompatActivity() {
         val jsonData = applicationContext.resources.openRawResource(applicationContext.resources.getIdentifier("output", "raw", applicationContext.packageName)).bufferedReader().use { it.readText() }
         val result = convertStringToArray(jsonData)
 
-        result.forEachIndexed { index, s ->
-            Log.d("TESTE", s)
-            viewModelHome.addList(Word(s, index.toLong()))
-        }
 
-        viewModelHome.addList(Word("banana", 0))
         /*result.mapIndexed { index, s ->
             viewModelHome.addList(Word(s, index.toLong()))
         }*/

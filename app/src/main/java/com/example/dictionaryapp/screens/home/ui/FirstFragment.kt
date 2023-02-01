@@ -24,6 +24,7 @@ class FirstFragment : Fragment() {
     private val binding get() = _binding!!
     var currentPage = 0
     var adapter = RecyclerViewAdapter()
+    var currentValue = 0
 
     @Inject
     lateinit var viewModelHome: ViewModelHome
@@ -44,58 +45,36 @@ class FirstFragment : Fragment() {
         adapter = RecyclerViewAdapter()
 
         (activity as AppCompatActivity).supportActionBar?.hide();
-        /*setupList()
-        onClickItem()*/
+        setupList(currentValue.toString())
+        onClickItem()
+        teste()
     }
 
-    private fun setupList() {
-        viewModelHome.getList()
-        binding.errorTextInformation.visibility = View.GONE
-        binding.homeRecyclerView.visibility = View.VISIBLE
+    private fun setupList(startAt: String) {
+        viewModelHome.getList(startAt)
         viewModelHome.wordResponse.observe(viewLifecycleOwner) {
-            adapter.setDataList(it)
-            adapter?.notifyDataSetChanged()
+            adapter.addData(it)
+            adapter.notifyDataSetChanged()
             setRecyclerView()
         }
     }
 
-    fun teste(){
+    fun teste() {
         binding.homeRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                //if (!infiniteList.hasNext()) return
                 val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
                 if (lastVisibleItemPosition == adapter.itemCount - 1) {
                     currentPage++
-                    //adapter.updateData( infiniteList.asIterable().take(currentPage * pageSize + pageSize))
+                    currentValue += 25
+                    setupList(currentValue.toString())
                 }
             }
         })
     }
 
-    /* private fun loadMore() {
-         rowsArrayList.add(null)
-         adapter.notifyItemInserted(rowsArrayList.size - 1)
 
-         val handler = Handler()
-         handler.postDelayed({
-             rowsArrayList.removeAt(rowsArrayList.size - 1)
-             val scrollPosition = rowsArrayList.size
-             adapter.notifyItemRemoved(scrollPosition)
-             var currentSize = scrollPosition
-             val nextLimit = currentSize + 10
-
-             while (currentSize - 1 < nextLimit) {
-                 rowsArrayList.add("Item $currentSize")
-                 currentSize++
-             }
-
-             adapter.notifyDataSetChanged()
-             isLoading = false
-         }, 2000)
-     }*/
 
     private fun onClickItem() {
         adapter.onItemClick = {
@@ -107,8 +86,13 @@ class FirstFragment : Fragment() {
 
     private fun setRecyclerView() {
         binding.homeRecyclerView.setHasFixedSize(true)
+        val start = adapter.itemCount
         binding.homeRecyclerView.layoutManager = LinearLayoutManager(context)
+        val currentPosition = (binding.homeRecyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
         binding.homeRecyclerView.adapter = adapter
+        binding.homeRecyclerView.post {
+            binding.homeRecyclerView.scrollToPosition(if (currentPosition == -1) start else currentPosition)
+        }
     }
 
 
